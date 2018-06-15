@@ -19,7 +19,7 @@ public class Node {
 		this.color = Color.blue;
 	}
 
-	Node(int coordX, int coordY, int nodeSize, Color color) {
+	public Node(int coordX, int coordY, int nodeSize, Color color) {
 		this.coordX = coordX;
 		this.coordY = coordY;
 		this.nodeSize = nodeSize;

@@ -4,15 +4,21 @@ import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
+import giftObject.Gift;
+
 public class Panel extends JPanel { 
 
-	private Snake snake = new Snake();
+	private Snake snake;
+	private Gift gift;
 		
-	public Panel (Snake snake){
+	public Panel (Snake snake, Gift gift){
 		this.snake = snake;
+		this.gift = gift;
 	}
 	
 	public Panel() {
+		this.snake = new Snake();
+		this.gift = new Gift();
 	}
 	
 	public void paintComponent(Graphics g){
@@ -20,18 +26,36 @@ public class Panel extends JPanel {
 	    g.setColor(Color.white);
 	    g.fillRect(0, 0, this.getWidth(), this.getHeight());
 	    
-		for(int i=0;i<snake.L.size();i++) {
+		// Paint snake
+	    for(int i=0;i<snake.L.size();i++) {
 			g.setColor(snake.L.get(i).getColor());
 			g.fillOval(snake.L.get(i).getCoordX(), snake.L.get(i).getCoordY(), snake.L.get(i).getNodeSize(), snake.L.get(i).getNodeSize());
-		}               
+		}
+		
+		// Paint gifts
+	    for (int i = 0; i < gift.L.size(); i++) {
+			g.setColor(gift.L.get(i).getColor());
+			g.fillOval(gift.L.get(i).getCoordX(), gift.L.get(i).getCoordY(), gift.L.get(i).getNodeSize(), gift.L.get(i).getNodeSize());
+
+			
+		}
 	}
 
-	public Snake getS() {
+
+	public Snake getSnake() {
 		return snake;
 	}
 
-	public void setS(Snake s) {
-		snake = s;
+	public void setSnake(Snake snake) {
+		this.snake = snake;
+	}
+
+	public Gift getGift() {
+		return gift;
+	}
+
+	public void setGift(Gift gift) {
+		this.gift = gift;
 	}
 	
 	

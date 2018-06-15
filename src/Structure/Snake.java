@@ -2,17 +2,21 @@ package Structure;
 import java.util.*;
 
 
-public class Snake {
 
-	public LinkedList<Node> L = new LinkedList<Node>();
+public class Snake  {
 
+	public LinkedList<Node> L; 
+	public boolean gotGift;
 
 	public Snake() {
 		this.L = new LinkedList<Node>();
+		this.gotGift = false;
+				
 	}
 	
-	public Snake(LinkedList<Node> L) {
+	public Snake(LinkedList<Node> L, boolean gotGift) {
 		this.L = L;
+		this.gotGift=gotGift;
 	}
 
 	
@@ -20,7 +24,10 @@ public class Snake {
 		Node N = new Node();
 		N = N.NextNodeStraigth(this.L.get(1),this.L.get(0));
 		this.addNewFirstNode(N);
-		this.removeLastNode();
+		if (!this.gotGift) {
+			this.removeLastNode();
+		}
+		this.gotGift = false;
 		return this;
 	}
 	
@@ -28,7 +35,10 @@ public class Snake {
 		Node N = new Node();
 		N = N.NextNodeHaut(this.L.getFirst());
 		this.addNewFirstNode(N);
-		this.removeLastNode();
+		if (!this.gotGift) {
+			this.removeLastNode();
+		}
+		this.gotGift = false;
 		return this;
 	}
 	
@@ -36,7 +46,10 @@ public class Snake {
 		Node N = new Node();
 		N = N.NextNodeBas(this.L.getFirst());
 		this.addNewFirstNode(N);
-		this.removeLastNode();
+		if (!this.gotGift) {
+			this.removeLastNode();
+		}
+		this.gotGift = false;
 		return this;
 	}
 	
@@ -44,7 +57,10 @@ public class Snake {
 		Node N = new Node();
 		N = N.NextNodeGauche(this.L.getFirst());
 		this.addNewFirstNode(N);
-		this.removeLastNode();
+		if (!this.gotGift) {
+			this.removeLastNode();
+		}
+		this.gotGift = false;
 		return this;
 	}
 	
@@ -52,7 +68,10 @@ public class Snake {
 		Node N = new Node();
 		N = N.NextNodeDroite(this.L.getFirst());
 		this.addNewFirstNode(N);
-		this.removeLastNode();
+		if (!this.gotGift) {
+			this.removeLastNode();
+		}
+		this.gotGift = false;
 		return this;
 	}
 	
@@ -66,6 +85,15 @@ public class Snake {
 		L.removeLast();
 		return this;
 	}
+	
+	public boolean isAutoEaten() {
+		for (int i=1;i<this.L.size();i++) {
+			if((this.L.getFirst().getCoordX()==this.L.get(i).getCoordX()) && (this.L.getFirst().getCoordY()==this.L.get(i).getCoordY())) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 
 	public void AfficheSnake() {
@@ -74,6 +102,8 @@ public class Snake {
 		}
 		System.out.println("----------------------");
 	}
+
+
 
 
 }
